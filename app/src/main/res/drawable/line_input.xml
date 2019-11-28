@@ -1,0 +1,12 @@
+<?xml version ="1.0" encoding ="utf-8"?><!--  Learn More about how to use App Actions: https://developer.android.com/guide/actions/index.html -->
+<!-- Style for "bg" -->
+<!-- Add this snippet to layer-list xml in drawable. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Style for "line" -->
+    <!-- Add this snippet to layer-list xml in drawable. -->
+    <item android:width="315dp" android:height="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#ffe8e8e9" />
+        </shape>
+    </item>
+</selector>

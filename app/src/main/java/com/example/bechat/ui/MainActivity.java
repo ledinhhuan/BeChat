@@ -1,8 +1,10 @@
-package com.example.bechat;
+package com.example.bechat.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.bechat.R;
 
 public class MainActivity extends AppCompatActivity {
 

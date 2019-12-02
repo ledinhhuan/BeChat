@@ -4,4 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#fff</color>
+    <color name="whiteGrayColor">#F9F9F9</color>
+    <color name="colorMainBlue">#ff2998ff</color>
+    <color name="colorBlack">#050505</color>
+    <color name="grayEdit">#F5F5F5</color>
+    <color name="shadowButton">#3F51B5</color>
 </resources>

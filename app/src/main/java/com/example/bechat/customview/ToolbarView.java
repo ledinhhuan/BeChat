@@ -59,4 +59,7 @@ public class ToolbarView extends Toolbar {
             }
         }
     }
+    public void setOnclickIconBack(OnClickListener onclickIconBack){
+        iconBack.setOnClickListener(onclickIconBack);
+    }
 }

@@ -51,7 +51,7 @@
 		android:background="@drawable/bg_edit_text"
 		app:layout_constraintStart_toStartOf="parent"
 		android:hint="@string/password"
-		android:drawableEnd="@mipmap/ic_invisibility"
+		android:drawableEnd="@drawable/ic_hide"
 		android:paddingEnd="10dp"
 		android:paddingStart="20dp"
 		android:inputType="textPassword"

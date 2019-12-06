@@ -6,6 +6,9 @@
     <string name="forgot_password">Forgot password ?</string>
     <string name="login_facebook">Login with Facebook</string>
     <string name="login_google">Login with Google</string>
+    <string name="create">Create</string>
+    <string name="name1">Name</string>
+    <string name="cancel">Cancel</string>
     <string name="do_not_have_account">Don\'t have an account ?</string>
     <string name="sign_up">
         <u>Sign up</u>

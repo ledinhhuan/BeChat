@@ -18,26 +18,33 @@
 		android:visibility="gone"
 		/>
 
-	<ImageView
-		android:id="@+id/icBack"
+	<LinearLayout
+		android:id="@+id/backPlace"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:background="@drawable/ic_back"
-		android:layout_centerVertical="true"
-		android:layout_marginLeft="5dp"
-		android:visibility="gone"
-		/>
+		>
+		<ImageView
+			android:id="@+id/icBack"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/ic_back"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="5dp"
+			android:visibility="visible"
+			/>
 
-	<TextView
-		android:id="@+id/nameBackActivity"
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_toRightOf="@id/icBack"
-		android:layout_centerVertical="true"
-		android:layout_marginLeft="5dp"
-		android:textSize="15sp"
-		android:textColor="@color/colorMainBlue"
-		android:visibility="gone"
-		/>
+		<TextView
+			android:id="@+id/nameBackActivity"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_toRightOf="@id/icBack"
+			android:layout_centerVertical="true"
+			android:layout_marginLeft="5dp"
+			android:textSize="15sp"
+			android:textColor="@color/colorMainBlue"
+			android:visibility="visible"
+			/>
+
+	</LinearLayout>
 
 </RelativeLayout>

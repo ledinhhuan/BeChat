@@ -1,5 +1,6 @@
 package com.example.bechat.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
@@ -42,7 +43,8 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener{
                 Toast.makeText(this,"check login",Toast.LENGTH_SHORT).show()
             }
             R.id.signUpText->{
-                Toast.makeText(this,"move to sign in",Toast.LENGTH_SHORT).show()
+               val intent = Intent(this, SignUpActivity :: class.java)
+                startActivity(intent)
             }
         }
     }

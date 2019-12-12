@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -20,6 +21,7 @@ public class ToolbarView extends Toolbar {
     private ImageView iconBack;
     private TextView nameBackActivity;
     private TypedArray attributes;
+    private LinearLayout backPlace;
     private String style;
 
     public ToolbarView(Context context, @Nullable AttributeSet attrs) {
@@ -29,6 +31,7 @@ public class ToolbarView extends Toolbar {
         nameActivity = findViewById(R.id.nameActivity);
         iconBack = findViewById(R.id.icBack);
         nameBackActivity = findViewById(R.id.nameBackActivity);
+        backPlace = findViewById(R.id.backPlace);
 
         attributes = context.obtainStyledAttributes(attrs,R.styleable.ToolbarView);
         nameActivity.setText(attributes.getString(R.styleable.ToolbarView_text_act));
@@ -60,6 +63,6 @@ public class ToolbarView extends Toolbar {
         }
     }
     public void setOnclickIconBack(OnClickListener onclickIconBack){
-        iconBack.setOnClickListener(onclickIconBack);
+        backPlace.setOnClickListener(onclickIconBack);
     }
 }

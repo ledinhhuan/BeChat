@@ -18,5 +18,6 @@
     </string>
     <string name="camera">Camera</string>
     <string name="library">Library</string>
+    <string name="reset">Reset Password</string>
 
 </resources>

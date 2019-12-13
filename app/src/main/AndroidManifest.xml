@@ -20,7 +20,9 @@
         </activity>
         <activity android:name=".ui.SplashActivity">
         </activity>
-        <activity android:name=".ui.LoginActivity">
+        <activity android:name=".ui.LoginActivity"
+            android:windowSoftInputMode="adjustPan"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +30,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.SignUpActivity">
+        </activity>
+        <activity android:name=".ui.ResetActivity">
         </activity>
 
     </application>

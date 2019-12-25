@@ -19,5 +19,8 @@
     <string name="camera">Camera</string>
     <string name="library">Library</string>
     <string name="reset">Reset Password</string>
+    <string name="be_chat">Be Chat</string>
+    <string name="search">Search...</string>
+    <string name="enter_mess">Enter message...</string>
 
 </resources>

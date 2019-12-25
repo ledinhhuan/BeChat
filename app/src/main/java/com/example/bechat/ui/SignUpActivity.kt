@@ -1,6 +1,7 @@
 package com.example.bechat.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.usage.StorageStats
 import android.content.Intent
@@ -241,6 +242,7 @@ class SignUpActivity : AppCompatActivity(){
         }
     }
 
+    @SuppressLint("MissingSuperCall")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode==CODE_PICK_IMAGE){
             if(resultCode== Activity.RESULT_OK){

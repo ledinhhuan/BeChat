@@ -15,4 +15,5 @@ class SharePrefer (context: Context) {
     fun getStatus(): Boolean{
         return sharedPreferences.getBoolean(STATUS_USER,false)
     }
+
 }

@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.bechat.R
+import com.example.bechat.data.local.SharePrefer
 import com.example.bechat.helper.Util
 import com.example.bechat.helper.Util.hideKeyboard
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,10 +23,11 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener{
 
     private var auth = FirebaseAuth.getInstance()
     private var hidePass = true
+    lateinit var sharedPrefer :SharePrefer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        sharedPrefer = SharePrefer(this)
         //set onclick
         passwordEdittext.onRightDrawableClicked{
             if(hidePass){
@@ -55,10 +57,12 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener{
             R.id.signUpText->{
                val intent = Intent(this, SignUpActivity :: class.java)
                 startActivity(intent)
+                finish()
             }
             R.id.forgottext ->{
                 val intent = Intent(this, ResetActivity :: class.java)
                 startActivity(intent)
+                finish()
             }
 
         }
@@ -69,6 +73,7 @@ class LoginActivity : AppCompatActivity(),View.OnClickListener{
                 .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
                     override fun onComplete(p0: Task<AuthResult>) {
                         if (p0.isSuccessful) {
+                            sharedPrefer.setStatus(true)
                             var intent = Intent(this@LoginActivity,MainActivity ::class.java)
                             startActivity(intent)
                             finish()

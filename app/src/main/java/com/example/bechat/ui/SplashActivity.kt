@@ -18,9 +18,11 @@ class SplashActivity : AppCompatActivity() {
             if (sharePrefer.getStatus()){
                 var intent = Intent(this, MainActivity ::class.java)
                 startActivity(intent)
+                finish()
             }else{
                 var intent = Intent(this, LoginActivity ::class.java)
                 startActivity(intent)
+                finish()
             }
         },3000)
     }

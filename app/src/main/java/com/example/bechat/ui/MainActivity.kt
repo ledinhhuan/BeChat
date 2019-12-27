@@ -10,6 +10,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity :AppCompatActivity() {
+
+    private var isChatDetailFragment = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -42,9 +44,26 @@ class MainActivity :AppCompatActivity() {
     }
     fun hideBottomNavigation(){
         bottomMain.visibility = View.GONE
+
     }
     fun showBottomNavigation(){
         bottomMain.visibility = View.VISIBLE
+    }
+
+    fun handleronBackPressed(isDetail : Boolean){
+       isChatDetailFragment = isDetail
+    }
+
+    override fun onBackPressed() {
+        if (isChatDetailFragment){
+            showBottomNavigation()
+            this@MainActivity.findNavController(R.id.fragmentPlace).navigateUp()
+        }
+        else{
+            super.onBackPressed()
+        }
+
+
     }
 
 

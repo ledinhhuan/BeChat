@@ -36,6 +36,7 @@ class ChatDetailFragment: Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        (activity as MainActivity).handleronBackPressed(isDetail = true)
         return inflater.inflate(R.layout.fragment_chat_detail,container,false)
     }
 
@@ -46,6 +47,7 @@ class ChatDetailFragment: Fragment() {
         chatDetailRecyclerView.layoutManager= LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false)
         chatDetailRecyclerView.adapter = adapter
         getUser(currentUser!!.uid)
+
         Log.d("TAG:ChatDetailFragment",user?.friends.toString())
         getMessage()
         val idReceiver = arguments?.getString("user")
@@ -80,6 +82,8 @@ class ChatDetailFragment: Fragment() {
         }
         backImg.setOnClickListener {
             (activity as MainActivity).showBottomNavigation()
+            (activity as MainActivity).handleronBackPressed(isDetail = false)
+
             view.findNavController().navigateUp()
         }
     }

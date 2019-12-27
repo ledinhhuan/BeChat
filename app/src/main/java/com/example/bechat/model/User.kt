@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class User (
         var id: String? = null,
         var username: String?= null,
-        var avatarURL: String?= null
+        var avatarURL: String?= null,
+        var friends: MutableList<String>?= null
 ):Parcelable

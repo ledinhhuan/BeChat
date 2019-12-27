@@ -16,6 +16,7 @@ class MainActivity :AppCompatActivity() {
         bottomMain.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentPlace)
         val backStackEntryCount = navHostFragment?.childFragmentManager?.fragments?.size
+
     }
     private val mOnNavigationItemSelectedListener = object : BottomNavigationView.OnNavigationItemSelectedListener {
 
@@ -42,4 +43,9 @@ class MainActivity :AppCompatActivity() {
     fun hideBottomNavigation(){
         bottomMain.visibility = View.GONE
     }
+    fun showBottomNavigation(){
+        bottomMain.visibility = View.VISIBLE
+    }
+
+
 }

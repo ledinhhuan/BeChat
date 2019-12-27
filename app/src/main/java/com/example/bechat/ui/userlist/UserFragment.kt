@@ -40,11 +40,15 @@ class UserFragment :Fragment(){
         adapter.onClickItemListenner(object :AdapterUserList.OnClickItemListener{
             override fun onItemClick(user: User) {
                 var bundle = Bundle()
-                bundle.putParcelable("user",user)
+                bundle.putString("user",user.id)
                 view.findNavController().navigate(R.id.chatDetailFragment,bundle)
             }
 
         })
+        imgSettingUser.setOnClickListener {
+           // FirebaseAuth.getInstance().signOut()
+
+        }
     }
     private fun getUsers(){
         var firebaseUser = FirebaseAuth.getInstance().currentUser

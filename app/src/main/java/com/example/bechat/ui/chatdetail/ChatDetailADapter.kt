@@ -1,6 +1,7 @@
 package com.example.bechat.ui.chatdetail
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,21 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.example.bechat.R
+import com.example.bechat.data.local.SharePrefer
 import com.example.bechat.model.ChatData
+import com.example.bechat.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_chat_detail.*
 
-class ChatDetailADapter (private val chatList: MutableList<ChatData>, context: Context, var idUserCurrent : String): RecyclerView.Adapter<ChatDetailADapter.ViewHolder>(){
+class ChatDetailADapter (private val chatList: MutableList<ChatData>, val context: Context): RecyclerView.Adapter<ChatDetailADapter.ViewHolder>(){
 
+    private var currentUser = FirebaseAuth.getInstance().currentUser
+    private var databaseReference : DatabaseReference?= null
+    private var sender :User?= null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var v = LayoutInflater.from(parent.context).inflate(R.layout.item_list_chat_detail,parent,false)
         return ViewHolder(v)
@@ -37,15 +48,49 @@ class ChatDetailADapter (private val chatList: MutableList<ChatData>, context: C
         var timeLeft = itemview.findViewById<TextView>(R.id.messRightTx)
         var timeRight = itemview.findViewById<TextView>(R.id.messRightTx)
         fun bindData(item : ChatData){
-            if(item.user.id == idUserCurrent){
-                itemLeft.visibility = View.GONE
-                itemRight.visibility = View.VISIBLE
-                messRight.text= item.mess
-            }else{
-                itemLeft.visibility = View.VISIBLE
-                itemRight.visibility = View.GONE
-                messLeft.text= item.mess
-            }
+            Log.d("TAG:ChatDetailADapter","idsender: ${item.idSender} current: ${currentUser?.uid}")
+            var reference = FirebaseDatabase.getInstance().getReference("Users").child(item.idSender!!)
+            reference.addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    sender = p0.getValue(User ::class.java)
+                    if(item.idSender == currentUser?.uid){
+
+                        itemLeft.visibility = View.GONE
+                        itemRight.visibility = View.VISIBLE
+                        messRight.text= item.mess
+                        Glide.with(context)
+                                .load(sender?.avatarURL)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(avatarRight)
+                    }else{
+                        itemLeft.visibility = View.VISIBLE
+                        itemRight.visibility = View.GONE
+                        messLeft.text= item.mess
+                        Glide.with(context)
+                                .load(sender?.avatarURL)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(avatarLeft)
+                    }
+                }
+
+            })
+
         }
+    }
+    private fun getUser(id :String){
+        var reference = FirebaseDatabase.getInstance().getReference("Users").child(id)
+        reference.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                sender = p0.getValue(User ::class.java)
+
+            }
+
+        })
     }
 }

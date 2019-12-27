@@ -43,6 +43,8 @@ class ResetActivity :AppCompatActivity(){
         }
 
         toolbarReset.setOnclickIconBack {
+            val intent = Intent(this, LoginActivity :: class.java)
+            startActivity(intent)
             finish()
         }
     }

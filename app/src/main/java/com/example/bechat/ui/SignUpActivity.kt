@@ -49,7 +49,7 @@ class SignUpActivity : AppCompatActivity(){
     private var firebaseUser : FirebaseUser?= null
     private var storageReference : StorageReference?= null
     private var avatarUri :String?= null
-    private var sharedPreferences : SharePrefer?= null
+    lateinit var sharedPreferences : SharePrefer
     lateinit var reference : DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,6 +145,8 @@ class SignUpActivity : AppCompatActivity(){
             }
         }
         toolbarSignUp.setOnclickIconBack {
+            val intent = Intent(this, LoginActivity :: class.java)
+            startActivity(intent)
             finish()
         }
     }
@@ -154,13 +156,18 @@ class SignUpActivity : AppCompatActivity(){
             auth?.createUserWithEmailAndPassword(emailRegisterEdit.text.toString(), passWordRegisterEdit.text.toString())
                     ?.addOnCompleteListener(this) { p0 ->
                         if (p0.isSuccessful) {
+
+
                             var firebaseUser = auth!!.currentUser
                             var userId = firebaseUser?.uid
+                            var friends = mutableListOf<String>()
+                            friends.add(userId!!)
 
-                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userId!!)
-                            val user = HashMap<String,String>()
+                            reference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                            val user = HashMap<String,Any>()
                             user.put("id",userId)
                             user.put("username",userNameRegisterEdit.text.toString())
+                            user.put("friends",friends)
                             Log.d("TAG:SignUpActivity","avatarURL "+avatarUri)
                             if(avatarUri == null){
                                 user.put("avatarURL","default")
@@ -171,7 +178,7 @@ class SignUpActivity : AppCompatActivity(){
 
                             reference.setValue(user).addOnCompleteListener(object : OnCompleteListener<Void> {
                                 override fun onComplete(p0: Task<Void>) {
-                                    sharedPreferences?.setStatus(true)
+                                    sharedPreferences.setStatus(true)
                                     var intent = Intent(this@SignUpActivity,MainActivity ::class.java)
                                     startActivity(intent)
                                     finish()
